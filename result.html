@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Result — RoadSense</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-logo">🚗</span>
+        <span>RoadSense</span>
+      </a>
+      <nav class="topbar-links">
+        <a href="survey.html" class="btn btn-outline btn-sm">Take again</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container narrow">
+    <section class="card" style="margin-top: 32px; text-align:center;">
+      <div id="result-emoji" style="font-size: 56px;">🔍</div>
+      <h1 class="section-title" id="result-headline">Your driving profile</h1>
+      <p class="muted" id="result-subtext"></p>
+    </section>
+
+    <section class="card">
+      <div class="card-title">📊 Your category breakdown</div>
+      <p class="card-subtitle">How your answers distribute across driving styles.</p>
+      <div class="result-bars" id="result-bars"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-title">ℹ️ About your top style</div>
+      <p id="result-desc" style="color: var(--text-muted);"></p>
+    </section>
+
+    <section class="card">
+      <div class="card-title">🛣️ Quick safety tips</div>
+      <ul id="result-tips" style="padding-left: 20px; color: var(--text-muted);"></ul>
+    </section>
+
+    <div class="text-center mt-20 mb-20">
+      <a href="survey.html" class="btn btn-primary">Retake Survey</a>
+      <a href="index.html" class="btn btn-ghost">Back to Home</a>
+    </div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/result.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Survey — RoadSense</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-logo">🚗</span>
+        <span>RoadSense</span>
+      </a>
+      <nav class="topbar-links">
+        <a href="index.html" class="btn btn-ghost btn-sm">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container narrow">
+    <h1 class="section-title" style="margin-top: 32px;">🧭 Driver / Rider Survey</h1>
+    <p class="card-subtitle">This should take about 2 minutes. Answer honestly for the best result.</p>
+
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span id="progress-step">Step 1 of 2</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <form id="survey-form" autocomplete="off">
+      <!-- STEP 1: Personal details -->
+      <section id="step-details" class="card">
+        <div class="card-title">👤 Your details</div>
+        <p class="card-subtitle">Basic information so we can identify your result.</p>
+
+        <div class="field">
+          <label for="name">Full name <span class="hint">(required)</span></label>
+          <input type="text" id="name" class="input" placeholder="e.g. Aiman bin Aziz" required />
+        </div>
+
+        <div class="input-group">
+          <div class="field" style="flex:1;">
+            <label for="age">Age <span class="hint">(required)</span></label>
+            <input type="number" id="age" class="input" placeholder="e.g. 28" min="10" max="99" required />
+          </div>
+          <div class="field" style="flex:1;">
+            <label for="vehicle">Vehicle type</label>
+            <select id="vehicle" class="select">
+              <option value="car">🚗 Car driver</option>
+              <option value="motorcycle">🏍️ Motorcycle rider</option>
+              <option value="both">Both</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email <span class="hint">(optional)</span></label>
+          <input type="email" id="email" class="input" placeholder="you@example.com" />
+        </div>
+
+        <button type="button" class="btn btn-primary" id="details-next">Next →</button>
+      </section>
+
+      <!-- STEP 2: Questions -->
+      <section id="step-questions" class="hidden">
+        <div id="questions-container"></div>
+        <div class="flex-between mt-20">
+          <button type="button" class="btn btn-outline" id="questions-back">← Back</button>
+          <button type="button" class="btn btn-accent" id="questions-submit">See my result 🎉</button>
+        </div>
+      </section>
+    </form>
+  </main>
+
+  <div id="toast-container"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/survey.js"></script>
+</body>
+</html>

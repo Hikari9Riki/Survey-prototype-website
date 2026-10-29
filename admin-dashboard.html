@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — RoadSense</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-logo">🚗</span>
+        <span>RoadSense Admin</span>
+      </a>
+      <nav class="topbar-links">
+        <span class="muted" id="admin-identity" style="font-size:14px;"></span>
+        <button class="btn btn-outline btn-sm" id="logout-btn">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="admin-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-link active" data-view="summary">📊 Summary</div>
+        <div class="sidebar-link" data-view="individual">👥 Individual Results</div>
+        <div class="sidebar-link" id="report-link">📄 Generate Report</div>
+        <hr style="border:none;border-top:1px solid var(--border);margin:12px 0;" />
+        <div class="sidebar-link" id="sample-data-link">🧪 Load Sample Data</div>
+        <div class="sidebar-link" id="clear-data-link" style="color:#dc2626;">🗑️ Clear All Data</div>
+      </aside>
+
+      <!-- Content -->
+      <section style="min-width:0;">
+        <div class="flex-between mb-20" style="flex-wrap:wrap;gap:12px;">
+          <h1 class="section-title" id="view-title">Summary</h1>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-outline btn-sm" id="export-csv">⬇️ Export CSV</button>
+            <button class="btn btn-outline btn-sm" id="export-xlsx">⬇️ Export Excel (.xlsx)</button>
+          </div>
+        </div>
+
+        <!-- Summary view -->
+        <div id="view-summary">
+          <div class="stat-grid">
+            <div class="stat-card"><div class="stat-label">Total Respondents</div><div class="stat-value" id="stat-total">0</div></div>
+            <div class="stat-card"><div class="stat-label">Avg. Age</div><div class="stat-value" id="stat-age">–</div></div>
+            <div class="stat-card"><div class="stat-label">Car Drivers</div><div class="stat-value" id="stat-car">0</div></div>
+            <div class="stat-card"><div class="stat-label">Motorcycle Riders</div><div class="stat-value" id="stat-bike">0</div></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">🏆 Average category distribution (all respondents)</div>
+            <p class="card-subtitle">Mean percentage each respondent scored per driving style.</p>
+            <div id="summary-bars" class="result-bars"></div>
+            <div id="summary-empty" class="alert alert-info hidden">No responses yet. Load sample data or submit a survey first.</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">🔝 Most common top style</div>
+            <p id="summary-top-cat" style="font-size:20px;font-weight:700;" class="muted">–</p>
+          </div>
+        </div>
+
+        <!-- Individual view -->
+        <div id="view-individual" class="hidden">
+          <div class="card">
+            <div class="card-title">Respondent list</div>
+            <p class="card-subtitle">Click any row to see full details.</p>
+            <div class="table-wrap">
+              <table id="individual-table">
+                <thead>
+                  <tr>
+                    <th>Name</th><th>Age</th><th>Vehicle</th><th>Top Style</th>
+                    <th>🛡️</th><th>🎲</th><th>😤</th><th>⚡</th><th>🐢</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div id="individual-empty" class="alert alert-info hidden mt-10">No responses yet.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Detail modal -->
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="detail-name">Respondent</h3>
+        <button class="modal-close" id="detail-close">&times;</button>
+      </div>
+      <div id="detail-body"></div>
+    </div>
+  </div>
+
+  <!-- Report modal -->
+  <div class="modal-overlay" id="report-modal">
+    <div class="modal" style="max-width:700px;">
+      <div class="modal-header">
+        <h3>📄 Survey Report</h3>
+        <button class="modal-close" id="report-close">&times;</button>
+      </div>
+      <div id="report-preview"></div>
+      <div class="flex-between mt-20">
+        <button class="btn btn-outline" id="report-close2">Close</button>
+        <button class="btn btn-primary" id="report-print">🖨️ Print / Save PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script src="js/data.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
